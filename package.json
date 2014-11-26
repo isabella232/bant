@@ -1,5 +1,5 @@
 {
-  "name": "bant.js",
+  "name": "bant",
   "version": "0.1.1",
   "description": "package-manager agnostic build tool for modular web applications",
   "main": "index.js",
