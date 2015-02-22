@@ -1,28 +1,18 @@
 {
   "name": "bant",
-  "version": "0.1.1",
-  "description": "package-manager agnostic build tool for modular web applications",
+  "version": "0.2.0",
+  "description": "",
   "main": "index.js",
-  "bin": {
-    "bant": "bin/bant.js"
-  },
   "scripts": {
-    "test": "./node_modules/.bin/tap test/*.js"
+    "test": "tape test/*.js"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/bantjs/bant.git"
   },
   "keywords": [
-		"bant",
-		"bantjs",
-		"builder",
-		"package",
-		"component",
-		"browserify",
-		"browser",
-		"npm",
-		"client"
+    "bant",
+    "bantjs"
   ],
   "author": "Onur Gunduz <ogunduz@gmail.com> (http://onurgunduz.com/)",
   "license": "MIT",
@@ -31,12 +21,14 @@
   },
   "homepage": "https://github.com/bantjs/bant",
   "dependencies": {
-    "browserify": "^6.3.2",
-    "component-builder": "^1.1.13",
-    "component-resolver": "^1.2.7",
-    "yargs": "^1.3.3"
+    "bant-plugin": "^0.1.0",
+    "browserify": "^9.0.3",
+    "isarray": "0.0.1",
+    "watchify": "^2.4.0",
+    "xtend": "^4.0.0"
   },
   "devDependencies": {
-    "tap": "^0.4.13"
+    "mkdirp": "^0.5.0",
+    "tape": "^3.5.0"
   }
 }
