@@ -7,6 +7,7 @@ var isarray = require('isarray');
 var defined = require('defined');
 var Reader = require('./lib/reader');
 var concat = require('concat-stream');
+var Readable = require('stream').Readable;
 
 exports = module.exports = Bant;
 inherits(Bant, Browserify);
@@ -19,6 +20,8 @@ function Bant (files, opts) {
 
   this._reader = new Reader(opts);
   this._manifests = [];
+  this._globalsPath = defined(opts.globalsPath, 'globals');
+  this._globals = opts.globals;
 }
 
 Bant.prototype.use = function (file) {
@@ -62,21 +65,31 @@ Bant.prototype.bundle = function (cb) {
 
   if (!this._reader.empty) {
     this._reader.once('end', function (res) {
+      var hasGlobals = self._globals;
       self._manifests = res;
       res.forEach(function (x) {
+        if (!hasGlobals && 'object' === typeof x.globals)
+          hasGlobals = true;
         self.require(x._entry, {
           entry: true,
           expose: x.expose,
           basedir: x.basedir
         });
       });
+      if (hasGlobals) {
+        var globals = 'var g ='
+          + JSON.stringify(defined(self._globals, {}))
+          + ';\nmodule.exports = g;';
+        self.require(read(globals), { entry: true, expose: self._globalsPath })
+            .exclude(self._globalsPath);
+      }
       _end();
     });
+
     this._reader.end();
-  } else _end();
+  } else { _end() }
 
   this._bundled = true;
-
   return this.pipeline;
 };
 
@@ -95,3 +108,12 @@ exports.watch = function (files, opts) {
 };
 
 function isStream (s) { return s && typeof s.pipe === 'function' }
+
+function read (src) {
+  var s = Readable();
+  s._read = function () {
+    s.push(src);
+    s.push(null);
+  };
+  return s;
+}
