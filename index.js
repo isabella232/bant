@@ -6,6 +6,7 @@ var inherits = require('util').inherits;
 var isarray = require('isarray');
 var defined = require('defined');
 var Reader = require('./lib/reader');
+var factorPlugin = require('./lib/factor-plugin');
 var concat = require('concat-stream');
 var Readable = require('stream').Readable;
 
@@ -22,6 +23,8 @@ function Bant (files, opts) {
   this._manifests = [];
   this._globalsPath = defined(opts.globalsPath, 'globals');
   this._globals = opts.globals;
+
+  if (opts.factor) this.plugin(factorPlugin, opts);
 }
 
 Bant.prototype.use = function (file) {
