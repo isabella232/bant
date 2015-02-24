@@ -7,6 +7,7 @@ var isarray = require('isarray');
 var defined = require('defined');
 var Reader = require('./lib/reader');
 var factorPlugin = require('./lib/factor-plugin');
+var rewritify = require('bant-rewrite');
 var concat = require('concat-stream');
 var Readable = require('stream').Readable;
 
@@ -23,6 +24,14 @@ function Bant (files, opts) {
   this._manifests = [];
   this._globalsPath = defined(opts.globalsPath, 'globals');
   this._globals = opts.globals;
+
+  if ('object' === typeof opts.rewriteMap) {
+    this.transform(rewritify, {
+      basedir: defined(opts.rewriteBasedir, opts.basedir),
+      mapping: opts.rewriteMap,
+      extensions: defined(opts.rewriteExtensions, opts.extensions, [])
+    });
+  }
 
   if (opts.factor) this.plugin(factorPlugin, opts);
 }
