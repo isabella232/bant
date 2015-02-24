@@ -54,6 +54,7 @@ Bant.prototype.bundle = function (cb) {
   }
 
   function _end () {
+    self.emit('bant-ready');
     if (self._pending === 0) {
       self.emit('bundle', self.pipeline);
       self.pipeline.end();
