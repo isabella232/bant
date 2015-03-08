@@ -90,9 +90,14 @@ Bant.prototype.bundle = function (cb) {
         });
       });
       if (hasGlobals) {
-        var globals = 'var g ='
-          + JSON.stringify(defined(self._globals, {}))
-          + ';\nmodule.exports = g;';
+        var globals = 'var g = global.globals || {};';
+        if ('object' === typeof self._globals) {
+          Object.keys(self._globals).forEach(function (k) {
+            var v = self._globals[k];
+            globals += 'g[\'' + k + '\'] = ' + JSON.stringify(v) + ';';
+          });
+          globals += 'module.exports = g';
+        }
         self.require(read(globals), { entry: true, expose: self._globalsPath })
             .exclude(self._globalsPath);
       }
