@@ -90,7 +90,7 @@ Bant.prototype.bundle = function (cb) {
         });
       });
       if (hasGlobals) {
-        var globals = 'var g = global.globals || {};';
+        var globals = 'var g = global._globals || {};';
         if ('object' === typeof self._globals) {
           Object.keys(self._globals).forEach(function (k) {
             var v = self._globals[k];
