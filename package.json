@@ -26,7 +26,7 @@
     "bant-normalize": "^0.2.1",
     "bant-rewrite": "^0.1.0",
     "browser-pack": "^4.0.0",
-    "browserify": "^9.0.3",
+    "browserify": "9.0.3",
     "concat-stream": "^1.4.7",
     "defined": "0.0.0",
     "isarray": "0.0.1",
