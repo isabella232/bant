@@ -1,5 +1,5 @@
 {
-  "name": "bant",
+  "name": "@koding/bant",
   "version": "0.2.3",
   "description": "",
   "main": "index.js",
