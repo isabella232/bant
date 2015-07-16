@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/bantjs/bant.git"
+    "url": "https://github.com/koding/bant.git"
   },
   "keywords": [
     "bant",
@@ -17,7 +17,7 @@
   "author": "Onur Gunduz <ogunduz@gmail.com> (http://onurgunduz.com/)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/bantjs/bant/issues"
+    "url": "https://github.com/koding/bant/issues"
   },
   "homepage": "https://github.com/bantjs/bant",
   "dependencies": {
