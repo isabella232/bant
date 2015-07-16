@@ -22,8 +22,8 @@
   "homepage": "https://github.com/bantjs/bant",
   "dependencies": {
     "@koding/bant-factor": "^0.1.1",
+    "@koding/bant-normalize": "^0.2.1",
     "JSONStream": "^0.10.0",
-    "bant-normalize": "^0.2.1",
     "bant-rewrite": "^0.1.0",
     "browser-pack": "^4.0.0",
     "browserify": "9.0.3",
