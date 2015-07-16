@@ -7,7 +7,7 @@ var isarray = require('isarray');
 var defined = require('defined');
 var Reader = require('./lib/reader');
 var factorPlugin = require('./lib/factor-plugin');
-var rewritify = require('bant-rewrite');
+var rewritify = require('@koding/bant-rewrite');
 var concat = require('concat-stream');
 var Readable = require('stream').Readable;
 
